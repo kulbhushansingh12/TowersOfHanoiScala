@@ -1,3 +1,4 @@
+package com.kb.apps
 class TowerOfHanoiClass(rods: Array[List[Int]]) {
 
   def moveOneDisk(from: Int, to: Int): Unit = {
@@ -24,9 +25,21 @@ class TowerOfHanoiClass(rods: Array[List[Int]]) {
 
 object TowerOfHanoiWith {
   def main(args: Array[String]): Unit = {
-    val rods = Array((1 to args(0).toInt).toList, Nil, Nil)
+    try{
+     val rods = Array((1 to args(0).toInt).toList, Nil, Nil)
+   
     val tohc = new TowerOfHanoiClass(rods)
     tohc.moveDisks(0, 2, args(0).toInt)
+     }catch{
+       case nfe:NumberFormatException =>{         
+          println("Please enter valid number of disks");
+          System.exit(0);
+       }
+       case exc:Exception =>{
+         println("Error Occured while processing the towers")
+         exc.printStackTrace()
+       }
+    }
   }
 
 }
