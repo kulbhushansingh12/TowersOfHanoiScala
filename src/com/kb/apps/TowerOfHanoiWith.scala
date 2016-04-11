@@ -32,7 +32,7 @@ object TowerOfHanoiWith {
     tohc.moveDisks(0, 2, args(0).toInt)
      }catch{
        case nfe:NumberFormatException =>{         
-          println("Please enter valid number of disks");
+          println("Please enter valid number of disk");
           System.exit(0);
        }
        case exc:Exception =>{
