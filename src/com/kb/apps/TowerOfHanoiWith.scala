@@ -1,5 +1,5 @@
 package com.kb.apps
-class TowerOfHanoiClass(rods: Array[List[Int]]) {
+class TowerOfHanoiClass(rods: Array[List[Int]], map: Map[Int,String]) {
 
   def moveOneDisk(from: Int, to: Int): Unit = {
     //this condition make sure the move is legal and only place where the lists are being modified
@@ -11,12 +11,12 @@ class TowerOfHanoiClass(rods: Array[List[Int]]) {
 
   def moveDisks(from: Int, to: Int, n: Int): Unit = {
     if (n == 1) {
-      println("Disk 1 from "+ from + " to " + to);
+      println("Disk 1 from "+ map(from) + " to " + map(to))
       moveOneDisk(from, to)
     } else {
       val other = 3 - from - to
       moveDisks(from, other, n - 1)
-      println("Disk "+ n + " from " + from + " to " + to);
+      println("Disk "+ n + " from " + map(from) + " to " + map(to))
       moveOneDisk(from, to)
       moveDisks(other, to, n - 1)
     }
@@ -27,12 +27,12 @@ object TowerOfHanoiWith {
   def main(args: Array[String]): Unit = {
     try{
      val rods = Array((1 to args(0).toInt).toList, Nil, Nil)
-   
-    val tohc = new TowerOfHanoiClass(rods)
+     val map = Map[Int,String](0->"A", 1->"B", 2->"C")
+    val tohc = new TowerOfHanoiClass(rods, map)
     tohc.moveDisks(0, 2, args(0).toInt)
      }catch{
        case nfe:NumberFormatException =>{         
-          println("Please enter valid number of disk");
+          println("Please enter valid number of disk")
           System.exit(0);
        }
        case exc:Exception =>{
