@@ -26,7 +26,13 @@ class TowerOfHanoiClass(rods: Array[List[Int]], map: Map[Int,String]) {
 object TowerOfHanoiWith {
   def main(args: Array[String]): Unit = {
     try{
-     val rods = Array((1 to args(0).toInt).toList, Nil, Nil)
+     val numOfRods = args(0).toInt
+     if(numOfRods ==0 || numOfRods <0 || numOfRods >2147483647)
+     {
+       println("Please enter number of disks which is greater than 0 and less than 2147483647")
+       System.exit(0);
+     }
+     val rods = Array((1 to numOfRods).toList, Nil, Nil)
      val map = Map[Int,String](0->"A", 1->"B", 2->"C")
     val tohc = new TowerOfHanoiClass(rods, map)
     tohc.moveDisks(0, 2, args(0).toInt)
